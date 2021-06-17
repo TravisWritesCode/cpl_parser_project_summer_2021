@@ -3,11 +3,11 @@ import java.io.*;
 import java.util.*;
 
 public class App {
-    public static void main( String[] args ) throws Exception {
+    public static void main( String[] args ) {
     	try {
     		var file = new FileInputStream("sample_program.txt");
     		Lexer lex = new Lexer(file);
-    		Token token = null;
+    		Token token;
     		while ((token = lex.getNextToken()).type() != Token.Type.EOF) {
     			System.out.println(token);
     		}
