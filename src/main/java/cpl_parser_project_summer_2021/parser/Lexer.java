@@ -1,26 +1,31 @@
 package cpl_parser_project_summer_2021.parser;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 
-public class Lexer{
-	private Scanner sc = null;
+public class Lexer {
 	
-	public Lexer(Scanner input) throws Exception {
-		try {
-			sc = input;
-			sc.useDelimiter(" ");
-		} catch (Exception e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace();
-		}
+	private InputStream input;
+	private boolean eof = false;
+	
+	public Lexer(InputStream input) {
+		this.input = input;
+	}
+	
+	private char nextChar() throws IOException {
+		int c = input.read();
+		if (c == -1) eof = true;
+		return (char) c;
 	}
 	
 	public boolean hasNext() {
-		return sc.hasNext();
+		throw new RuntimeException();
 	}
 	
-	public String getNextToken() {
-		return sc.next();
+	public Token getNextToken() {
+		throw new RuntimeException();
 	}
 		
 }
