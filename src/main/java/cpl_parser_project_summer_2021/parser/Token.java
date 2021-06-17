@@ -5,6 +5,9 @@ public record Token(String lexeme, Type type) {
   public enum Type {
     
     ID,
+    STRING,
+    REAL,
+    INTEGER,
     EOF
     
   }

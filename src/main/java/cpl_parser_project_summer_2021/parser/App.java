@@ -8,8 +8,7 @@ public class App {
     		var file = new FileInputStream("sample_program.txt");
     		Lexer lex = new Lexer(file);
     		Token token = null;
-    		while (lex.hasNext()) {
-    			token = lex.getNextToken();
+    		while ((token = lex.getNextToken()).type() != Token.Type.EOF) {
     			System.out.println(token);
     		}
     	} 
