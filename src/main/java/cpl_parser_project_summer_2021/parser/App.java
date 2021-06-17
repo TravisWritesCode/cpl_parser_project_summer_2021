@@ -5,9 +5,9 @@ import java.util.*;
 public class App {
     public static void main( String[] args ) throws Exception {
     	try {
-    		Scanner file = new Scanner(new File("sample_program.txt"));
+    		var file = new FileInputStream("sample_program.txt");
     		Lexer lex = new Lexer(file);
-    		String token = null;
+    		Token token = null;
     		while (lex.hasNext()) {
     			token = lex.getNextToken();
     			System.out.println(token);
