@@ -18,6 +18,7 @@ public class Lexer {
 		keyword(GOTO),
 		keyword(GOSUB),
 		keyword(IF),
+		keyword(ELSE),
 		keyword(INPUT),
 		keyword(LET),
 		keyword(NEXT),
@@ -31,7 +32,14 @@ public class Lexer {
 		keyword(STOP),
 		keyword(SYS),
 		keyword(WAIT),
-		keyword(OUTPUT)
+		keyword(OUTPUT),
+		keyword(TO),
+		keyword(STEP),
+		keyword(THEN),
+		keyword(AS),
+		keyword(AND),
+		keyword(OR),
+		keyword(NOT)
 	);
 	
 	private static Map.Entry<String, Token> keyword(Token.Type type) {
