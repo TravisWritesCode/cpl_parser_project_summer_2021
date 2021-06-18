@@ -58,7 +58,7 @@ public class Lexer {
 			}
 			return new Token(builder.toString(), decimal ? REAL : INTEGER);
 		} else {
-			throw new LexerException("Unexepcted character '" + current + "'");
+			throw new LexerException("Unexpected character '" + current + "'");
 		}
 	}
 		
