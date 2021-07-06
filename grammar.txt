@@ -25,7 +25,7 @@ Nonterminal Values:
                 | FOR Identifier = <Expression> TO <Expression> STEP <Constant>
                 | GOTO <Expression>
                 | GOSUB <Expression>
-                | IF <Expression> THEN <Statement>
+                | IF <Expression> THEN Number_Literal
                 | INPUT <Identifier List>
 	    | INPUT String <Divider> <Identifier List>
                 | LET Identifier = <Expression>
