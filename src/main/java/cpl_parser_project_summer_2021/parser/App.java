@@ -15,7 +15,7 @@ public class App {
     public static void main( String[] args ) {
     	try {
     		var file = new FileInputStream("sample_program.txt");
-    		Lexer lex = new Lexer(file);
+    		Lexer lex = new Lexer(file, getKeywords());
     		Token token;
     		while ((token = lex.getNextToken()).type() != Token.Type.EOF) {
     			System.out.println(token);
@@ -26,4 +26,14 @@ public class App {
     	      e.printStackTrace();
     	}
     }
+
+	private static Set<String> getKeywords() throws IOException {
+    var keywords = new HashSet<String>();
+    var file = new File("keywords.txt");
+		Scanner sc = new Scanner(file);
+		while(sc.hasNextLine()) {
+			keywords.add(sc.nextLine());
+		}
+		return keywords;
+  }
 }

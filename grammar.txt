@@ -1,0 +1,108 @@
+BASIC Backus-Naur Form Grammar
+
+Terminal Values:
+Identifier = {letter}+ {character}
+String = "{character}"
+Number_Literal = {digit} + [.{digit}]
+				| .{digit}
+Blank_Statement =
+
+NewLine = {CR}{LF}|{CR}
+Remark = REM{CHAR}
+
+Nonterminal Values:
+<Line> --> Number_Literal <Statements> NewLine <Line>
+                | Number_Literal <Statements> NewLine
+
+<Statements> --> <Statement> <Divider> <Statement>
+                | <Statement>
+
+<Statement> --> DATA <Constant List>
+                | DEF FNN ( Identifier ) = <Expression>
+                | DIM Identifier ( <Number List> )
+                | END
+                | FOR Identifier = <Expression> TO <Expression>
+                | FOR Identifier = <Expression> TO <Expression> STEP <Constant>
+                | GOTO <Expression>
+                | GOSUB <Expression>
+                | IF <Expression> THEN <Statement>
+                | INPUT <Identifier List>
+	    | INPUT String <Divider> <Identifier List>
+                | LET Identifier = <Expression>
+                | NEXT <Identifier List>
+                | PRINT <Print list>
+                | READ <Identifier List>
+                | RETURN
+                | STOP
+    	    | <Function Expression>
+    	    | Blank_Statement
+			| Remark
+
+<Function Expression> --> ABS (<Addition Expression>)
+				| FNN (<Addition Expression>)
+                | ATN (<Addition Expression>)
+                | COS (<Addition Expression>)
+                | EXP (<Addition Expression>)
+                | INT (<Addition Expression>)
+                | LOG (<Addition Expression>)
+                | RND (Number_Literal)
+                | SIN (<Addition Expression>)
+                | SQR (<Addition Expression>)
+                | TAN (<Addition Expression>)
+
+<Identifier List> --> Identifier <Divider> <Identifier List>
+             | Identifier
+
+<Value List> --> <Value> <Divider> <Value List>
+             | <Value>
+
+<Constant List> --> <Constant> <Divider> <Constant List>
+             | <Constant>
+
+<Number List> --> Number_Literal <Divider> <Number List>
+             | Number_Literal
+
+<Print List> --> <Expression> <Divider> <Print List>
+             | <Expression>
+             | Blank_Statement
+
+<Expression> --> <And Expression> OR <Expression>
+             | <And Expression>
+
+<And Expression> --> <Not Expression> AND <And Expression>
+             | <Not Expression>
+
+<Not Expression> --> NOT <Compare Expression>
+             | <Compare Expression>
+
+<Compare Expression> --> <Addition Expression> = <Compare Expression>
+             | <Addition Expression> <> <Compare Expression>
+             | <Addition Expression> > <Compare Expression>
+             | <Addition Expression> >= <Compare Expression>
+             | <Addition Expression> < <Compare Expression>
+             | <Addition Expression> <= <Compare Expression>
+             | <Addition Expression>
+
+<Addition Expression> --> <Multiplication Expression> + <Addition Expression>
+             | <Multiplication Expression> - <Addition Expression>
+             | <Multiplication Expression>
+
+<Multiplication Expression> --> <Negate Expression> * <Multiplication Expression>
+             | <Negate Expression> / <Multiplication Expression>
+             | <Negate Expression>
+
+<Negate Expression> --> - <Value>
+             | <Value>
+
+<Value> --> ( <Expression> )
+             | Identifier
+             | <Constant>
+             | <Function Expression>
+
+<Constant> --> Number_Literal
+             | String
+
+<Divider> --> ,
+             | ;
+ 	 | :
+

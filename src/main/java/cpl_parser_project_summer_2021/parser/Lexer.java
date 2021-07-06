@@ -11,56 +11,21 @@ package cpl_parser_project_summer_2021.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
+import java.util.Set;
 
 import static cpl_parser_project_summer_2021.parser.Token.Type.*;
 import static java.lang.Character.toUpperCase;
 
 public class Lexer {
-	
-	private static Map<String, Token> keywords = Map.ofEntries(
-		keyword(CLOSE),
-		keyword(DATA),
-		keyword(DIM),
-		keyword(END),
-		keyword(FOR),
-		keyword(GOTO),
-		keyword(GOSUB),
-		keyword(IF),
-		keyword(ELSE),
-		keyword(INPUT),
-		keyword(LET),
-		keyword(NEXT),
-		keyword(OPEN),
-		keyword(POKE),
-		keyword(PRINT),
-		keyword(READ),
-		keyword(RETURN),
-		keyword(RESTORE),
-		keyword(RUN),
-		keyword(STOP),
-		keyword(SYS),
-		keyword(WAIT),
-		keyword(OUTPUT),
-		keyword(TO),
-		keyword(STEP),
-		keyword(THEN),
-		keyword(AS),
-		keyword(AND),
-		keyword(OR),
-		keyword(NOT)
-	);
-	
-	private static Map.Entry<String, Token> keyword(Token.Type type) {
-		return Map.entry(type.name(), new Token(type.name(), type));
-	}
-	
+
+	private Set<String> keywords;
 	private InputStream input;
 	private char current;
 	private boolean eof = false;
 	
-	public Lexer(InputStream input) throws IOException {
+	public Lexer(InputStream input, Set<String> keywords) throws IOException {
 		this.input = input;
+		this.keywords = keywords;
 		nextChar();
 	}
 	
@@ -85,9 +50,8 @@ public class Lexer {
 				nextChar();
 			}
 			var value = builder.toString();
-			var keyword = keywords.get(value);
-			if (keyword != null) {
-				return keyword;
+			if (keywords.contains(value)) {
+				return new Token(value, KEYWORD);
 			} else if (REM.name().equals(value)) {
 				while (!eof && current != '\r' && current != '\n') nextChar();
 				return new Token(null, REM);
