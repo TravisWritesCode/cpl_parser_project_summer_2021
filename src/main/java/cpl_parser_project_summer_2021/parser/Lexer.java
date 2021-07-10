@@ -68,7 +68,7 @@ public class Lexer {
 			}
 			nextChar(); // current is '"'
 			return new Token(builder.toString(), STRING);
-		} else if (current >= '0' && current <= '9') {
+		} else if (current >= '0' && current <= '9' || current == '.') {
 			var builder = new StringBuilder();
 			var decimal = false;
 			while (!eof && (current >= '0' && current <= '9' || current == '.' && !decimal)) {
@@ -76,7 +76,7 @@ public class Lexer {
 				builder.append(current);
 				nextChar();
 			}
-			return new Token(builder.toString(), decimal ? REAL : INTEGER);
+			return new Token(builder.toString(), NUMBER);
 		} else if (current == '\r' || current == '\n') {
 			var first = current;
 			nextChar();

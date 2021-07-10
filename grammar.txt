@@ -18,7 +18,6 @@ Nonterminal Values:
                 | <Statement>
 
 <Statement> --> DATA <Constant List>
-                | DEF FNN ( Identifier ) = <Expression>
                 | DIM Identifier ( <Number List> )
                 | END
                 | FOR Identifier = <Expression> TO <Expression>
@@ -39,7 +38,6 @@ Nonterminal Values:
 			| Remark
 
 <Function Expression> --> ABS (<Addition Expression>)
-				| FNN (<Addition Expression>)
                 | ATN (<Addition Expression>)
                 | COS (<Addition Expression>)
                 | EXP (<Addition Expression>)

@@ -15,8 +15,7 @@ public record Token(String lexeme, Type type) {
     
     ID,
     STRING,
-    REAL,
-    INTEGER,
+    NUMBER,
     
     REM,
     NEWLINE,
