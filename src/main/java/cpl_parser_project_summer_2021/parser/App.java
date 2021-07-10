@@ -8,6 +8,8 @@
 
 
 package cpl_parser_project_summer_2021.parser;
+import hu.webarticum.treeprinter.ListingTreePrinter;
+
 import java.io.*;
 import java.util.*;
 
@@ -15,11 +17,12 @@ import java.util.*;
 public class App {
     public static void main( String[] args ) {
     	try {
-    		var file = new FileInputStream("BASIC_Input_File_1.txt");
+    		var file = new FileInputStream("BASIC_Input_File_2.txt");
     		Lexer lex = new Lexer(file, getKeywords());
 				Parser parser = new Parser(lex);
 				var parseTree = parser.parseLines();
-				System.out.println(parseTree.toString().replace("[", "[\n").replace("]", "\n]"));
+				//System.out.println(parseTree.toString().replace("[", "[\n").replace("]", "\n]"));
+				new ListingTreePrinter().print(parseTree.makeTree());
     	} 
     	catch (Exception e) {
     	      System.out.println("An error occurred.");
