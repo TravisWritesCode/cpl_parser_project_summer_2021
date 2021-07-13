@@ -16,7 +16,6 @@ public interface ParseTree {
     public interface ConstantTree extends ExpressionTree {}
 
     public record LinesNode(List<LineNode> lines) implements ParseTree {
-
         @Override
         public TreeNode makeTree() {
             var node = new SimpleTreeNode("<lines>");
@@ -26,11 +25,9 @@ public interface ParseTree {
             }
             return node;
         }
-
     }
 
     public record LineNode(NumberNode number, List<StatementTree> statements) implements ParseTree {
-
         @Override
         public TreeNode makeTree() {
             var node = new SimpleTreeNode("<line>");

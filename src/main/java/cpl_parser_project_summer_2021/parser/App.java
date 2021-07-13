@@ -3,7 +3,7 @@
  * Term:        Fall 2019
  * Name:        Nicholas Luchuk, Travis Hescox, Yash Shidhaye,
  * Instructor:   Deepa Muralidhar
- * Project:  Deliverable 1 Scanner - Java
+ * Project:  Deliverable 2 Parser - Java
  */
 
 
@@ -19,10 +19,10 @@ public class App {
     	try {
     		var file = new FileInputStream("BASIC_Input_File_2.txt");
     		Lexer lex = new Lexer(file, getKeywords());
-				Parser parser = new Parser(lex);
-				var parseTree = parser.parseLines();
-				//System.out.println(parseTree.toString().replace("[", "[\n").replace("]", "\n]"));
-				new ListingTreePrinter().print(parseTree.makeTree());
+			Parser parser = new Parser(lex);
+			var parseTree = parser.parseLines();
+			//System.out.println(parseTree.toString().replace("[", "[\n").replace("]", "\n]"));
+			new ListingTreePrinter().print(parseTree.makeTree());
     	} 
     	catch (Exception e) {
     	      System.out.println("An error occurred.");
