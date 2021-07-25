@@ -17,12 +17,12 @@ import java.util.*;
 public class App {
     public static void main( String[] args ) {
     	try {
-    		var file = new FileInputStream("BASIC_Input_File_2.txt");
+    		var file = new FileInputStream("sample_program_2.txt");
     		Lexer lex = new Lexer(file, getKeywords());
 			Parser parser = new Parser(lex);
 			var parseTree = parser.parseLines();
 			//System.out.println(parseTree.toString().replace("[", "[\n").replace("]", "\n]"));
-			new ListingTreePrinter().print(parseTree.makeTree());
+			Instruction.execute(parseTree.compile());
     	} 
     	catch (Exception e) {
     	      System.out.println("An error occurred.");
